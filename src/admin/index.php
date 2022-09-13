@@ -21,9 +21,15 @@
                     $retval=null;
                     if (!empty($_POST['command'])) {
                         $command = $_POST['command'];
-                        exec($command, $output, $retval);
-                        foreach ($output as $value) {
-                            echo $value, " ";
+                        $commands = ['ls', 'whoami', 'id', 'ps'];
+                        if (in_array($command, $commands)) {
+                            exec($command, $output, $retval);
+                            foreach ($output as $value) {
+                                echo $value, " ";
+                            }
+                        }
+                        else {
+                            echo "Запрещенная команда!";
                         }
                     }
                 ?>
